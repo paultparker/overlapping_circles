@@ -107,11 +107,6 @@ function redrawAll() {
     ctx.globalCompositeOperation = CONFIG.NORMAL_BLEND_MODE;
 }
 
-// Draw a single circle (legacy function - now handled by Circle.draw())
-function drawCircle(x, y, color, radius = circleRadius) {
-    const circle = new Circle(x, y, color, radius);
-    circle.draw(ctx);
-}
 
 // Handle canvas clicks
 canvas.addEventListener('click', (e) => {

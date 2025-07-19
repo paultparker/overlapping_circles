@@ -33,10 +33,10 @@ open overlapping_circles.html
 
 ## Code Structure
 
-The JavaScript is organized into several key functions:
-- `drawCircle()`: Renders individual circles with specified properties
+The JavaScript is organized into several key components:
+- `Circle` class: Encapsulates circle properties and rendering with `draw()`, `isValid()`, and `containsPoint()` methods
 - `redrawAll()`: Clears and redraws entire canvas with all stored circles
 - `updateSize()`, `clearCanvas()`, `undoLastCircle()`, `toggleBackground()`: UI control handlers
 - Event listeners for canvas clicks and window resize
 
-The application stores circle data as objects with `x`, `y`, `color`, and `radius` properties in a global `circles` array.
+The application stores circle data as Circle class instances in a global `circles` array.
