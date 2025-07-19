@@ -11,6 +11,33 @@ const CONFIG = {
     NORMAL_BLEND_MODE: 'source-over'
 };
 
+// Circle class
+class Circle {
+    constructor(x, y, color, radius = CONFIG.DEFAULT_RADIUS) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.radius = radius;
+    }
+
+    draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(${this.color.rgb[0]}, ${this.color.rgb[1]}, ${this.color.rgb[2]}, ${CONFIG.CIRCLE_ALPHA})`;
+        ctx.fill();
+    }
+
+    isValid() {
+        return this.x >= 0 && this.y >= 0 && this.radius > 0;
+    }
+
+    containsPoint(x, y) {
+        const dx = x - this.x;
+        const dy = y - this.y;
+        return Math.sqrt(dx * dx + dy * dy) <= this.radius;
+    }
+}
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const currentColorSpan = document.getElementById('current-color');
@@ -73,19 +100,17 @@ function redrawAll() {
     
     // Draw all circles
     circles.forEach(circle => {
-        drawCircle(circle.x, circle.y, circle.color, circle.radius);
+        circle.draw(ctx);
     });
     
     // Reset blend mode
     ctx.globalCompositeOperation = CONFIG.NORMAL_BLEND_MODE;
 }
 
-// Draw a single circle
+// Draw a single circle (legacy function - now handled by Circle.draw())
 function drawCircle(x, y, color, radius = circleRadius) {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(${color.rgb[0]}, ${color.rgb[1]}, ${color.rgb[2]}, ${CONFIG.CIRCLE_ALPHA})`;
-    ctx.fill();
+    const circle = new Circle(x, y, color, radius);
+    circle.draw(ctx);
 }
 
 // Handle canvas clicks
@@ -95,12 +120,7 @@ canvas.addEventListener('click', (e) => {
     const y = e.clientY - rect.top;
     
     // Add circle to array
-    circles.push({
-        x: x,
-        y: y,
-        color: CONFIG.COLORS[currentColorIndex],
-        radius: circleRadius
-    });
+    circles.push(new Circle(x, y, CONFIG.COLORS[currentColorIndex], circleRadius));
     
     // Cycle to next color
     currentColorIndex = (currentColorIndex + 1) % CONFIG.COLORS.length;
