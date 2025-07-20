@@ -1,0 +1,21 @@
+{
+  "name": "overlapping-circles",
+  "version": "1.0.0",
+  "description": "Interactive HTML5 Canvas visualization with overlapping colored circles",
+  "main": "overlapping_circles.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "test:headless": "node test-runner.js --headless",
+    "pretest": "echo 'Running tests...'",
+    "prepush": "npm test"
+  },
+  "keywords": ["canvas", "visualization", "circles", "html5"],
+  "author": "Paul Parker",
+  "license": "MIT",
+  "devDependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

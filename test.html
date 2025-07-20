@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlapping Circles - Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-results {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-pass { color: #4CAF50; }
+        .test-fail { color: #f44336; }
+        .test-summary {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .test-case {
+            margin: 10px 0;
+            padding: 8px;
+            border-left: 4px solid #ddd;
+        }
+        .test-case.pass { border-left-color: #4CAF50; background: #f1f8e9; }
+        .test-case.fail { border-left-color: #f44336; background: #ffebee; }
+    </style>
+</head>
+<body>
+    <h1>Overlapping Circles - Unit Tests</h1>
+    
+    <div id="test-results" class="test-results">
+        <div class="test-summary">Running tests...</div>
+    </div>
+
+    <script src="overlapping_circles.js"></script>
+    <script src="tests.js"></script>
+</body>
+</html>
